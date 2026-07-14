@@ -106,7 +106,7 @@ function AdminProducts() {
               </tr>
             ) : (
               filtered.map((p) => {
-                const stock = (p.colors || []).reduce((s, c) => s + (c.stock || 0), 0);
+                const stock = p.stock || 0;
                 return (
                   <tr key={p.id} className="border-t">
                     <td className="px-4 py-3">{p.name}</td>
@@ -498,12 +498,12 @@ function ProductForm({ product, setProduct, onClose, categories, seller }) {
                       onChange={(e) => updColor(i, "name", e.target.value)}
                       className="px-2 py-1.5 rounded border text-sm"
                     />
-                    <input
+                    {/* <input
                       type="color"
                       value={c.hex}
                       onChange={(e) => updColor(i, "hex", e.target.value)}
                       className="h-9 w-full rounded border"
-                    />
+                    /> */}
                     <input
                       placeholder="Stock"
                       type="number"
@@ -536,7 +536,7 @@ function ProductForm({ product, setProduct, onClose, categories, seller }) {
                         </button>
                       </div>
                     ))}
-                    <label className={`h-16 w-16 rounded border-2 border-dashed grid place-items-center cursor-pointer hover:border-accent ${
+                    {/* <label className={`h-16 w-16 rounded border-2 border-dashed grid place-items-center cursor-pointer hover:border-accent ${
                       !firebaseReady ? "opacity-40" : ""
                     }`}>
                       <FiUpload />
@@ -548,7 +548,7 @@ function ProductForm({ product, setProduct, onClose, categories, seller }) {
                         disabled={!firebaseReady}
                         onChange={(e) => uploadImages(i, e.target.files)}
                       />
-                    </label>
+                    </label> */}
                   </div>
                   <ImageUrlList
                     urls={c.images}

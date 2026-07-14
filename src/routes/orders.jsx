@@ -6,7 +6,7 @@ export const Route = createFileRoute("/orders")({ component: Orders });
 
 function Orders() {
   const { user } = useAuth();
-  const { orders, loading } = useUserOrders(user?.id);
+  const { orders, loading } = useUserOrders(user?.uid);
 
   if (!user) {
     return (

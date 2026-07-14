@@ -55,18 +55,21 @@ export function useUserOrders(userId) {
    Seller Orders
 =========================== */
 
-export function useSellerOrders(sellerId) {
-  const [orders, setOrders] =useState([]);
+export function useSellerOrders() {
+  const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const unsubscribe = getOrdersBySeller(sellerId, (items) => {
-      setOrders(items);
+    const unsubscribe = getOrders((data) => {
+      setOrders(data);
       setLoading(false);
     });
 
     return unsubscribe;
-  }, [sellerId]);
+  }, []);
 
-  return { orders, loading };
+  return {
+    orders,
+    loading,
+  };
 }

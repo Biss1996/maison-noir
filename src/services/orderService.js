@@ -9,11 +9,11 @@ import {
   getDoc,
   serverTimestamp,
 } from "firebase/firestore";
-
+import { orderBy } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { db } from "../firebase/firestore";
 
-const COLLECTION = "Orders";
+const COLLECTION = "orders";
 
 /* ===========================================
    CREATE ORDER
@@ -206,11 +206,16 @@ export function countTodayOrders(orders) {
   }).length;
 }
 export function subscribeUserOrders(userId, callback) {
+  if (!userId) {
+    callback([]);
+    return () => {};
+  }
+
   const q = query(
-    collection(db, "orders"),
-    where("customer.uid", "==", userId),
-    orderBy("createdAt", "desc")
-  );
+  collection(db, "orders"),
+  where("userId", "==", userId),
+  orderBy("createdAt", "desc")
+);
   return onSnapshot(q, (snapshot) => {
     callback(
       snapshot.docs.map((doc) => ({

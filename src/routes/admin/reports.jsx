@@ -35,7 +35,7 @@ function Reports() {
     const rows = products.map((p) => ({
       id: p.id, sku: p.sku, name: p.name, category: p.category, brand: p.brand,
       price: p.price, discount: p.discount,
-      stock: (p.colors || []).reduce((s, c) => s + (c.stock || 0), 0),
+      stock: p.stock || 0,
     }));
     downloadCSV(`products-${Date.now()}.csv`, toCSV(rows));
   };
@@ -44,7 +44,7 @@ function Reports() {
     orders.forEach((o) => (o.items || []).forEach((i) => rows.push({
       orderId: o.id,
       date: o.createdAt?.toDate?.().toISOString?.() || "",
-      product: i.name, color: i.color?.name, size: i.size?.label,
+      product: i.name, color: i.color || "",size: i.size || "",
       qty: i.quantity, unitPrice: i.price, discount: i.discount,
       lineTotal: Math.round(i.price * (1 - (i.discount || 0) / 100)) * i.quantity,
     })));

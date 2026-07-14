@@ -69,19 +69,20 @@ function ProductDetails() {
             <span className="text-sm text-muted-foreground">({product.reviewsCount || 0} reviews)</span>
           </div>
           <div className="mt-4 flex items-baseline gap-3">
-            <span className="font-display text-3xl">{formatKES(priceAfterDiscount(product))}</span>
-            {(product.discount || 0) > 0 && <span className="text-muted-foreground line-through">{formatKES(product.price)}</span>}
+            <span className="text-sm font-semibold"> {formatKES(priceAfterDiscount(product.price,product.discount ) )}
+</span>
+            {(product.discount || 0) > 0 && <span className="text-muted-foreground text-red-700 line-through">{formatKES(product.price)}</span>}
             {(product.discount || 0) > 0 && <span className="text-xs btn-gold px-2 py-1 rounded">Save {product.discount}%</span>}
           </div>
 
-          <p className="mt-6 text-sm text-muted-foreground leading-relaxed">{product.description || "No description available."}</p>
+          <p className="mt-6 text-sm text-muted-foreground leading-relaxed">{product.description || ""}</p>
 
           {product.colors?.length > 0 && (
             <div className="mt-6">
               <p className="text-sm font-medium mb-2">Color: <span className="text-muted-foreground">{color?.name}</span></p>
               <div className="flex gap-2">
                 {product.colors.map((c, i) => (
-                  <button key={`${c.name}-${i}`} onClick={() => { setColorIdx(i); setImgIdx(0); }} className={`h-10 w-10 rounded-full border-2 ${i === colorIdx ? "border-accent" : "border-border"}`} style={{ background: c.hex }} aria-label={c.name} />
+                  <button key={`${c.name}-${i}`} onClick={() => { setColorIdx(i); setImgIdx(0); }} className={`h-10 w-10 rounded-full border-6 ${i === colorIdx ? "border-accent" : "border-border"}`} aria-label={c.name} />
                 ))}
               </div>
             </div>

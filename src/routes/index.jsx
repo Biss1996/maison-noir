@@ -76,7 +76,7 @@ if (productsLoading || categoriesLoading) {
 
       {/* Categories */}
       <Section eyebrow="Trending in Kenya" title="Shop by Category" cta={<Link to="/shop" className="text-sm underline">View all</Link>}>
-        <div className="grid gap-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        <div className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-6 gap-4">
   {categories.length > 0 ? (
     categories.map((c, i) => (
       <CategoryCard

@@ -32,10 +32,11 @@ export default function ProductCard({ product, index = 0 }) {
         </div>
         <div className="mt-3">
           <p className="text-xs text-muted-foreground uppercase tracking-wider">{product.brand}</p>
-          <h3 className="text-sm font-medium mt-1 line-clamp-1">{product.name}</h3>
+          <h3 className="text-l font-medium mt-1 line-clamp-1">{product.name}</h3>
           <div className="mt-1 flex items-center gap-2">
-            <span className="text-sm font-semibold">{formatKES(priceAfterDiscount(product))}</span>
-            {product.discount > 0 && <span className="text-xs text-muted-foreground line-through">{formatKES(product.price)}</span>}
+            <span className="text-sm font-semibold">
+  {formatKES(priceAfterDiscount(product.price,product.discount )  )}</span>
+            {product.discount > 0 && <span className="text-xs text-red-700 text-muted-foreground line-through">{formatKES(product.price)}</span>}
           </div>
         </div>
       </Link>

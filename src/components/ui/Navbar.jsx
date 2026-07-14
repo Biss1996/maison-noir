@@ -54,27 +54,77 @@ export default function Navbar() {
         </div>
       </div>
 
-      <AnimatePresence>
-        {open && (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-50 bg-black/40" onClick={() => setOpen(false)}>
-            <motion.aside
-              initial={{ x: -300 }} animate={{ x: 0 }} exit={{ x: -300 }} transition={{ type: "spring", stiffness: 260, damping: 30 }}
-              className="absolute left-0 top-0 h-full w-72 bg-background p-6"
-              onClick={(e) => e.stopPropagation()}
+     <AnimatePresence>
+  {open && (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 z-1 bg-black/70 backdrop-blur-sm"
+      onClick={() => setOpen(false)}
+    >
+      <motion.aside
+        initial={{ x: -320 }}
+        animate={{ x: 0 }}
+        exit={{ x: -320 }}
+        transition={{
+          type: "spring",
+          stiffness: 260,
+          damping: 28,
+        }}
+        onClick={(e) => e.stopPropagation()}
+        className="absolute left-0 top-0 h-full w-72 bg-[#0d0d0d] text-white border-r border-amber-400/20 shadow-[0_0_40px_rgba(0,0,0,.6)] p-6"
+      >
+        {/* Header */}
+        <div className="flex items-center justify-between pb-6 border-b border-white/10">
+          <div>
+            <h2 className="font-display text-2xl tracking-wide">
+              Maison
+              <span className="text-amber-400">·</span>
+              Noir
+            </h2>
+            <p className="text-xs uppercase tracking-[0.25em] text-white/50 mt-1">
+              Luxury Fashion
+            </p>
+          </div>
+
+          <button
+            onClick={() => setOpen(false)}
+            className="rounded-full p-2 hover:bg-white/10 transition"
+          >
+            <FiX size={22} />
+          </button>
+        </div>
+
+        {/* Navigation */}
+        <nav className="mt-8 flex flex-col">
+          {nav.map((n) => (
+            <Link
+              key={n.label}
+              to={n.to}
+              search={n.search}
+              onClick={() => setOpen(false)}
+              className="group flex items-center justify-between py-4 border-b border-white/5 text-white/90 hover:text-amber-400 transition-all duration-300"
             >
-              <div className="flex items-center justify-between mb-8">
-                <span className="font-display text-xl">Menu</span>
-                <button onClick={() => setOpen(false)}><FiX size={22} /></button>
-              </div>
-              <div className="flex flex-col gap-4">
-                {nav.map((n) => (
-                  <Link key={n.label} to={n.to} onClick={() => setOpen(false)} className="text-lg">{n.label}</Link>
-                ))}
-              </div>
-            </motion.aside>
-          </motion.div>
-        )}
-      </AnimatePresence>
+              <span>{n.label}</span>
+
+              <span className="opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all text-amber-400">
+                →
+              </span>
+            </Link>
+          ))}
+        </nav>
+
+        {/* Bottom Accent */}
+        <div className="absolute bottom-8 left-6 right-6">
+          <div className="h-px bg-gradient-to-r from-transparent via-amber-400/50 to-transparent mb-4" />
+
+          
+        </div>
+      </motion.aside>
+    </motion.div>
+  )}
+</AnimatePresence>
     </motion.header>
   );
 }

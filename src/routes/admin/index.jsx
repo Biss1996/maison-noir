@@ -69,12 +69,20 @@ function Dashboard() {
     [orders]
   );
 
-  const lowStock = useMemo(
-    () => products.filter((p) =>
-      (p.colors || []).some((c) => (c.stock ?? 0) < LOW_STOCK)
-    ).length,
-    [products]
-  );
+  const lowStock = useMemo(() => {
+  return products.filter((p) => {
+    if (Array.isArray(p.colors)) {
+      return p.colors.some((c) => {
+        if (typeof c === "object") {
+          return (c.stock ?? 0) < LOW_STOCK;
+        }
+        return false;
+      });
+    }
+
+    return (p.stock ?? 0) < LOW_STOCK;
+  }).length;
+}, [products]);
 
   const monthly = useMemo(() => {
     const buckets = {};
