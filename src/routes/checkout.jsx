@@ -245,9 +245,9 @@ window.open(link, "_self");
 
   const paymentOptions = [
     { v: "hashpay", label: "M-Pesa (HashPay STK Push)" },
-    { v: "whatsapp", label: "WhatsApp — talk to the seller (recommended)" },
+    { v: "whatsapp", label: "WhatsApp — talk to us(recommended)" },
     { v: "cod", label: "Cash on Delivery" },
-    { v: "bank", label: "Bank Transfer" },
+    // { v: "bank", label: "Bank Transfer" },
   ];
 
   return (
@@ -457,8 +457,8 @@ window.open(link, "_self");
             >
               <h2 className="font-display text-2xl">Confirm & Send</h2>
               <p className="text-sm text-muted-foreground mb-4">
-                We'll place your order and open WhatsApp so the seller can confirm
-                delivery and payment with you directly.
+                We'll place your order and open WhatsApp so that you can track
+                delivery and payment with us directly.
               </p>
 
               <div className="space-y-2">
