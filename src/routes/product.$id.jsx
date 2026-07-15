@@ -63,7 +63,7 @@ function ProductDetails() {
           : [];
 
   const handleAdd = () => {
-    cart.add(product, { color: color || null, size: size || null, quantity: qty });
+    cart.add(product, { color: selectedColor || null, size: size || null, quantity: qty });
   };
 
   return (

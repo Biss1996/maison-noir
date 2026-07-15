@@ -30,7 +30,7 @@ export const DEFAULT_SETTINGS = {
   bannerUrl: "",
 
   phone: "+254757497007",
-  whatsapp: "254727783444",
+  whatsapp: "+254727783444",
   email: "hello@maisonnoir.co.ke",
 
   facebook: "https://www.facebook.com/profile.php?id=100087398916255",
