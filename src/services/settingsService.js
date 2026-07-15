@@ -29,12 +29,12 @@ export const DEFAULT_SETTINGS = {
   logoUrl: "",
   bannerUrl: "",
 
-  phone: "+254700000000",
-  whatsapp: "254700000000",
+  phone: "+254757497007",
+  whatsapp: "254727783444",
   email: "hello@maisonnoir.co.ke",
 
-  facebook: "",
-  instagram: "",
+  facebook: "https://www.facebook.com/profile.php?id=100087398916255",
+  instagram: "https://www.instagram.com/maisonnoirke/",
 
   deliveryFee: 300,
   freeDeliveryOver: 5000,

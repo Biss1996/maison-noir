@@ -120,7 +120,7 @@ const { items: Products = [], loading,} = useProducts();
   return (
     <div className="p-4 md:p-6 text-white min-h-screen">
       <h1 className="text-3xl text-amber-300 font-bold">Inventory</h1>
-      <p className="text-gray-400 mt-1">Manage your stock and availability.</p>
+      <p className="text-gray-700 font-bold mt-1">Manage your stock and availability.</p>
 
       {/* ===== SUMMARY CARDS ===== */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
@@ -133,7 +133,7 @@ const { items: Products = [], loading,} = useProducts();
       {/* ===== MOBILE CARDS VIEW ===== */}
       <div className="lg:hidden mt-6 space-y-4">
         {Products.map((product) => (
-          <div key={product.id} className="rounded-xl border border-amber-400/20 bg-[#1111] p-4">
+          <div key={product.id} className="rounded-xl border border-amber-400/20 bg-[#111111] p-4">
             <div className="flex items-center gap-4">
               <ProductRow product={product} />
             </div>

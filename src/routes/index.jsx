@@ -20,7 +20,7 @@ export const Route = createFileRoute("/")({ component: Home });
 
 function Section({ eyebrow, title, children, cta }) {
   return (
-    <section className="mx-auto max-w-7xl px-4 sm:px-6 py-20">
+    <section className="mx-auto max-w-7xl px-4 sm:px-6 py-6">
       <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="flex items-end justify-between gap-6 mb-10">
         <div>
           {eyebrow && <p className="text-xs uppercase tracking-[0.3em] text-accent">{eyebrow}</p>}
@@ -54,114 +54,178 @@ if (productsLoading || categoriesLoading) {
   return <Loader />;
 }
 
-  return (
-    <>
-      <Hero />
+return (
+  <>
+    <Hero />
 
-      {/* Trust badges */}
-      <div className="border-y border-border bg-cream">
-        <div className="mx-auto max-w-7xl px-6 py-6 grid grid-cols-2 md:grid-cols-4 gap-6 text-sm">
+    {/* Trust badges - more compact */}
+    <div className="border-y border-border bg-cream">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 py-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-xs sm:text-sm">
           {[
             { i: FaShippingFast, t: "Free delivery over KSh 5,000" },
             { i: FaLock, t: "Secure M-Pesa checkout" },
             { i: FaMedal, t: "Authenticated luxury" },
             { i: FaHeadset, t: "Support 7 days a week" },
           ].map((b, i) => (
-            <div key={i} className="flex items-center gap-3">
-              <b.i className="text-accent" size={20} /><span>{b.t}</span>
+            <div key={i} className="flex items-center gap-2 sm:gap-3">
+              <b.i className="text-accent" size={16} />
+              <span>{b.t}</span>
             </div>
           ))}
         </div>
       </div>
-
-      {/* Categories */}
-      <Section eyebrow="Trending in Kenya" title="Shop by Category" cta={<Link to="/shop" className="text-sm underline">View all</Link>}>
-        <div className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-6 gap-4">
-  {categories.length > 0 ? (
-    categories.map((c, i) => (
-      <CategoryCard
-        key={c.id || c.slug}
-        cat={c}
-        index={i}
-      />
-    ))
-  ) : (
-    <div className="col-span-full text-center py-12 text-muted-foreground">
-      No categories found.
     </div>
-  )}
-</div>
-      </Section>
 
-      {/* Featured */}
-      <Section eyebrow="Curated" title="Featured Pieces">
-        <div className="grid gap-6 grid-cols-2 lg:grid-cols-4">
-          {featured.map((p, i) => <ProductCard key={p.id} product={p} index={i} />)}
-        </div>
-      </Section>
-
-      {/* Flash sale */}
-      <section className="mx-auto max-w-7xl px-6 py-16">
-        <div className="rounded-3xl bg-ink text-cream p-10 md:p-16 relative overflow-hidden shadow-luxe">
-          <div className="absolute inset-0 opacity-10">
-            <div className="absolute -top-20 -right-20 h-64 w-64 rounded-full bg-accent blur-3xl" />
+    {/* Categories */}
+    <Section
+      eyebrow="Trending in Kenya"
+      title="Shop by Category"
+      cta={<Link to="/shop" className="text-sm underline hover:no-underline">View all</Link>}
+    >
+      <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-3 sm:gap-4">
+        {categories.length > 0 ? (
+          categories.map((c, i) => (
+            <CategoryCard key={c.id || c.slug} cat={c} index={i} />
+          ))
+        ) : (
+          <div className="col-span-full text-center py-8 text-muted-foreground">
+            No categories found.
           </div>
-          <div className="relative grid md:grid-cols-2 gap-10 items-center">
-            <div>
-              <p className="text-accent uppercase tracking-[0.3em] text-xs">Flash Sale</p>
-              <h2 className="mt-3 font-display text-4xl md:text-6xl leading-tight">Up to <span className="text-accent">40% off</span> selected pieces</h2>
-              <p className="mt-4 text-cream/70">Ends soon. Handpicked from the newest collections.</p>
-              <Link to="/shop" className="inline-block mt-6 btn-gold px-8 py-3 rounded-full font-medium">Shop the Sale</Link>
-            </div>
-            <div><CountdownTimer target={flashSaleEnd} /></div>
+        )}
+      </div>
+    </Section>
+
+    {/* Featured */}
+    <Section eyebrow="Curated" title="Featured Pieces">
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+        className="grid gap-4 sm:gap-6 grid-cols-2 lg:grid-cols-4"
+      >
+        {featured.map((p, i) => (
+          <ProductCard key={p.id} product={p} index={i} />
+        ))}
+      </motion.div>
+    </Section>
+
+    {/* Flash sale - MINIMIZED & PROFESSIONAL */}
+    <section className="mx-auto max-w-7xl px-4 sm:px-6 py-8 md:py-12">
+      <motion.div
+        initial={{ opacity: 0, scale: 0.98 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="rounded-2xl bg-ink text-cream p-6 md:p-8 lg:p-10 shadow-luxe"
+      >
+        <div className="grid md:grid-cols-2 gap-6 md:gap-8 items-center">
+          <div>
+            <p className="text-accent uppercase tracking-[0.25em] text-xs">Limited Time</p>
+            <h2 className="mt-2 font-display text-2xl md:text-3xl lg:text-4xl leading-tight">
+              Exclusive savings on select items
+            </h2>
+            <p className="mt-3 text-cream/70 text-sm">
+              Handpicked from our newest collections. Ends soon.
+            </p>
+            <Link
+              to="/shop"
+              className="inline-block mt-4 btn-gold px-6 py-2.5 rounded-full text-sm font-medium"
+            >
+              Shop Now
+            </Link>
+          </div>
+          <div className="text-center md:text-right">
+            <CountdownTimer target={flashSaleEnd} />
           </div>
         </div>
-      </section>
+      </motion.div>
+    </section>
 
-      {/* New arrivals */}
-      <Section eyebrow="Just Landed" title="New Arrivals">
-        <div className="grid gap-6 grid-cols-2 lg:grid-cols-4">
-          {newArrivals.map((p, i) => <ProductCard key={p.id} product={p} index={i} />)}
+    {/* New arrivals */}
+    <Section eyebrow="Just Landed" title="New Arrivals">
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ delay: 0.2, duration: 0.5 }}
+        className="grid gap-4 sm:gap-6 grid-cols-2 lg:grid-cols-4"
+      >
+        {newArrivals.map((p, i) => (
+          <ProductCard key={p.id} product={p} index={i} />
+        ))}
+      </motion.div>
+    </Section>
+
+    {/* Trending */}
+    <Section eyebrow="Best Sellers" title="Trending Now">
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ delay: 0.3, duration: 0.5 }}
+        className="grid gap-4 sm:gap-6 grid-cols-2 lg:grid-cols-4"
+      >
+        {trending.map((p, i) => (
+          <ProductCard key={p.id} product={p} index={i} />
+        ))}
+      </motion.div>
+    </Section>
+
+    {/* Reviews */}
+    <section className="bg-secondary py-12 md:py-20">
+      <div className="mx-auto max-w-5xl px-6 text-center">
+        <p className="text-xs uppercase tracking-[0.3em] text-accent">Customer Love</p>
+        <h2 className="mt-2 font-display text-3xl md:text-4xl">Words from our clients</h2>
+        <div className="mt-8 md:mt-10 grid md:grid-cols-3 gap-4 md:gap-6">
+          {[
+            { n: "Amina W.", t: "The silk dress is breathtaking. Delivery to Nairobi was next-day. Obsessed." },
+            { n: "Brian O.", t: "Best Oxford shoes I've owned. Fit is spot on and the leather is stunning." },
+            { n: "Zawadi K.", t: "M-Pesa checkout was seamless. Will absolutely be back for the tote." },
+          ].map((r, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.15, duration: 0.5 }}
+              className="bg-background rounded-xl p-4 md:p-6 shadow-luxe"
+            >
+              <div className="text-accent text-sm">★★★★★</div>
+              <p className="mt-3 text-sm italic">"{r.t}"</p>
+              <p className="mt-4 text-sm font-semibold">— {r.n}</p>
+            </motion.div>
+          ))}
         </div>
-      </Section>
+      </div>
+    </section>
 
-      {/* Trending / Best sellers */}
-      <Section eyebrow="Best Sellers" title="Trending Now">
-        <div className="grid gap-6 grid-cols-2 lg:grid-cols-4">
-          {trending.map((p, i) => <ProductCard key={p.id} product={p} index={i} />)}
-        </div>
-      </Section>
-
-      {/* Reviews */}
-      <section className="bg-secondary py-20">
-        <div className="mx-auto max-w-5xl px-6 text-center">
-          <p className="text-xs uppercase tracking-[0.3em] text-accent">Customer Love</p>
-          <h2 className="mt-2 font-display text-4xl">Words from our clients</h2>
-          <div className="mt-10 grid md:grid-cols-3 gap-6">
-            {[
-              { n: "Amina W.", t: "The silk dress is breathtaking. Delivery to Nairobi was next-day. Obsessed." },
-              { n: "Brian O.", t: "Best Oxford shoes I've owned. Fit is spot on and the leather is stunning." },
-              { n: "Zawadi K.", t: "M-Pesa checkout was seamless. Will absolutely be back for the tote." },
-            ].map((r, i) => (
-              <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="bg-background rounded-2xl p-6 shadow-luxe">
-                <div className="text-accent">★★★★★</div>
-                <p className="mt-3 text-sm italic">"{r.t}"</p>
-                <p className="mt-4 text-sm font-semibold">— {r.n}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Newsletter */}
-      <section className="mx-auto max-w-4xl px-6 py-24 text-center">
-        <h2 className="font-display text-4xl md:text-5xl">Join The List</h2>
-        <p className="mt-3 text-muted-foreground">Early access to drops, private sales, and 10% off your first order.</p>
+    {/* Newsletter */}
+    <section className="mx-auto max-w-4xl px-6 py-16 md:py-24 text-center">
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+      >
+        <h2 className="font-display text-3xl md:text-4xl lg:text-5xl">Join The List</h2>
+        <p className="mt-3 text-muted-foreground">
+          Early access to drops, private sales, and 10% off your first order.
+        </p>
         <form onSubmit={(e) => e.preventDefault()} className="mt-6 max-w-md mx-auto flex">
-          <input type="email" required placeholder="Enter your email" className="flex-1 px-4 py-3 rounded-l-full border border-r-0 bg-background outline-none" />
-          <button className="btn-gold px-6 py-3 rounded-r-full font-medium">Subscribe</button>
+          <input
+            type="email"
+            required
+            placeholder="Enter your email"
+            className="flex-1 px-4 py-3 rounded-l-full border border-r-0 border-gray-300 bg-background outline-none focus:ring-2 focus:ring-accent/20"
+          />
+          <button className="btn-gold px-6 py-3 rounded-r-full font-medium">
+            Subscribe
+          </button>
         </form>
-      </section>
-    </>
-  );
+      </motion.div>
+    </section>
+  </>
+);
 }

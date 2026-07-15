@@ -5,6 +5,7 @@ import {
   Outlet,
   createRootRouteWithContext,
   useRouter,
+  useRouterState,
 } from "@tanstack/react-router";
 
 import { AppProviders } from "../context/AppProviders.jsx";
@@ -96,6 +97,12 @@ export const Route =
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
 
+  const pathname = useRouterState({
+    select: (state) => state.location.pathname,
+  });
+
+  const isAdmin = pathname.startsWith("/admin");
+
   useEffect(() => {
     document.title = "Maison Noir — Premium Fashion Kenya";
   }, []);
@@ -104,7 +111,8 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <AppProviders>
         <div className="min-h-screen bg-background text-foreground flex flex-col">
-          <Navbar />
+
+          {!isAdmin && <Navbar />}
 
           <main className="flex-1">
             <Suspense fallback={<LoadingSpinner />}>
@@ -112,10 +120,10 @@ function RootComponent() {
             </Suspense>
           </main>
 
-          <Footer />
+          {!isAdmin && <Footer />}
+          {!isAdmin && <CartDrawer />}
+          {!isAdmin && <FloatingContactButtons />}
 
-          <CartDrawer />
-          <FloatingContactButtons />
         </div>
       </AppProviders>
     </QueryClientProvider>

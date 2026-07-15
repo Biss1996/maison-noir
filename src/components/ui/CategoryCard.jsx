@@ -23,13 +23,9 @@ export default function CategoryCard({ cat, index = 0 }) {
 
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 
-        <div className="absolute bottom-0 left-0 right-0 p-3">
-          <h3 className="font-display text-base md:text-lg text-white">
+        <div className="absolute top-7 left-0 right-0 p-3">
+            <p className="text-xs text-amber-300">
             {cat.name}
-          </h3>
-
-          <p className="text-xs text-amber-300">
-            {cat.count} Products
           </p>
         </div>
       </Link>
