@@ -12,7 +12,7 @@ import { useCategories } from "../../hooks/useCategories.js";
 import { useProducts } from "../../hooks/useProducts.js";
 import { firebaseReady } from "../../firebase/config.jsx";
 import { useAuth } from "../../context/AppProviders.jsx";
-
+import { exportMetaCSV } from "../../services/metaFeedService";
 export const Route = createFileRoute("/admin/products")({
   component: AdminProducts
 });
@@ -38,6 +38,7 @@ function AdminProducts() {
 
   return (
     <div className="p-4 sm:p-6">
+      
       <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
         <div>
           <h1 className="font-display text-4xl">Products</h1>
@@ -57,6 +58,12 @@ function AdminProducts() {
         >
           <FiPlus /> Add Product
         </button>
+        <button
+  onClick={exportMetaCSV}
+  className="rounded-lg bg-black px-2 py-2 text-white"
+>
+  Export csv
+</button>
       </div>
 
       <div className="flex flex-wrap gap-2 mb-4">
