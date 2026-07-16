@@ -3,10 +3,10 @@ import { FaWhatsapp, FaFacebookF, FaInstagram, FaPhoneAlt } from "react-icons/fa
 import { useState } from "react";
 
 const items = [
-  { icon: FaWhatsapp, label: "WhatsApp", href: "https://wa.me/254700000000", color: "#25D366" },
+  { icon: FaWhatsapp, label: "WhatsApp", href: "https://wa.me/254727783444", color: "#25D366" },
   { icon: FaInstagram, label: "Instagram", href: "https://instagram.com", color: "#E1306C" },
   { icon: FaFacebookF, label: "Facebook", href: "https://facebook.com", color: "#1877F2" },
-  { icon: FaPhoneAlt, label: "Call", href: "tel:+254700000000", color: "#c9a24a" },
+  { icon: FaPhoneAlt, label: "Call", href: "tel:+254727783444", color: "#c9a24a" },
 ];
 
 export default function FloatingContactButtons() {
